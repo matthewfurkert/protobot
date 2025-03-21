@@ -1,0 +1,320 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:property name="mass_base" value="16.875" />
+    <xacro:property name="mass_mountPost" value="2.437" />
+    <xacro:property name="mass_rod0End" value="0.066" />
+    <xacro:property name="mass_rod1End" value="0.111" />
+    <xacro:property name="mass_servoMotor" value="0.055" />
+    <xacro:property name="mass_webcam" value="0.028" />
+    
+    <link name="world" />
+
+    <link name="base_link">
+        <visual>
+            <origin xyz="-0.25 -0.25 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://protobot_description/meshes/base_gz0.01.STL"
+                    scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey" />
+        </visual>
+        <collision>
+            <origin xyz="-0.25 -0.25 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://protobot_description/meshes/base_gz0.01.STL"
+                    scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+        <inertial>
+            <mass value="${mass_base}" />
+            <inertia ixx="0.352441" ixy="0" ixz="0"
+                iyy="0.352441" iyz="0"
+                izz="0.703125" />
+        </inertial>
+    </link>
+
+    <link name="mountPost_link">
+        <visual>
+            <origin xyz="-0.0254 -0.3008 0" rpy="${pi/2} 0 ${pi/2}" />
+            <geometry>
+                <mesh filename="package://protobot_description/meshes/mountPost_gz0.01.STL"
+                    scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="grey" />
+        </visual>
+        <collision>
+            <origin xyz="-0.0254 -0.3008 0" rpy="${pi/2} 0 ${pi/2}" />
+            <geometry>
+                <mesh filename="package://protobot_description/meshes/mountPost_gz0.01.STL"
+                    scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+        <inertial>
+            <mass value="${mass_mountPost}" />
+            <inertia ixx="0.227504" ixy="0" ixz="0"
+                iyy="0.023582" iyz="0.006557"
+                izz="0.249198" />
+        </inertial>
+    </link>
+
+    <link name="rod1_link">
+        <visual>
+            <origin xyz="0 -0.0125 -0.025" rpy="${pi/2} 0 ${pi/2}" />
+            <geometry>
+                <mesh filename="package://protobot_description/meshes/rod1End_gz0.01.STL"
+                    scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="green" />
+        </visual>
+        <collision>
+            <origin xyz="0 -0.0125 -0.025" rpy="${pi/2} 0 ${pi/2}" />
+            <geometry>
+                <mesh filename="package://protobot_description/meshes/rod1End_gz0.01.STL"
+                    scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+        <inertial>
+            <mass value="${mass_rod1End}" />
+            <inertia ixx="0.000078" ixy="0" ixz="0"
+                iyy="0.000061" iyz="0.006557"
+                izz="0.000027" />
+        </inertial>
+    </link>
+
+    <link name="servo1_link">
+        <visual>
+            <origin xyz="0.037 -0.01 -0.043" rpy="${pi/2} 0 ${pi}" />
+            <geometry>
+                <mesh filename="package://protobot_description/meshes/servoMotor_gz0.01.STL"
+                    scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="red" />
+        </visual>
+        <collision>
+            <origin xyz="0.037 -0.01 -0.043" rpy="${pi/2} 0 ${pi}" />
+            <geometry>
+                <mesh filename="package://protobot_description/meshes/servoMotor_gz0.01.STL"
+                    scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+        <inertial>
+            <mass value="${mass_servoMotor}" />
+            <inertia ixx="0.000009" ixy="0" ixz="0"
+                iyy="0.000009" iyz="0"
+                izz="0.000014" />
+        </inertial>
+    </link>
+
+    <link name="rod2_link">
+        <visual>
+            <origin xyz="0 -0.0125 0.0125" rpy="0 ${pi/2} 0" />
+            <geometry>
+                <mesh filename="package://protobot_description/meshes/rod0End_gz0.01.STL"
+                    scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="green" />
+        </visual>
+        <collision>
+            <origin xyz="0 -0.0125 0.0125" rpy="0 ${pi/2} 0" />
+            <geometry>
+                <mesh filename="package://protobot_description/meshes/rod0End_gz0.01.STL"
+                    scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+        <inertial>
+            <mass value="${mass_rod1End}" />
+            <inertia ixx="0.000016" ixy="0" ixz="0"
+                iyy="0.000016" iyz="0"
+                izz="0.000005" />
+        </inertial>
+    </link>
+
+    <link name="servo2_link">
+        <visual>
+            <origin xyz="-0.007 0.01 -0.018" rpy="${pi/2} 0 0" />
+            <geometry>
+                <mesh filename="package://protobot_description/meshes/servoMotor_gz0.01.STL"
+                    scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="red" />
+        </visual>
+        <collision>
+            <origin xyz="-0.007 0.01 -0.018" rpy="${pi/2} 0 0" />
+            <geometry>
+                <mesh filename="package://protobot_description/meshes/servoMotor_gz0.01.STL"
+                    scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+        <inertial>
+            <mass value="${mass_servoMotor}" />
+            <inertia ixx="0.000009" ixy="0" ixz="0"
+                iyy="0.000009" iyz="0"
+                izz="0.000014" />
+        </inertial>
+    </link>
+
+     <link name="rod3_link">
+        <visual>
+            <origin xyz="0.075 0.0125 -0.05" rpy="${pi/2} 0 -${pi/2}" />
+            <geometry>
+                <mesh filename="package://protobot_description/meshes/rod1End_gz0.01.STL"
+                    scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="green" />
+        </visual>
+        <collision>
+            <origin xyz="0.075 0.0125 -0.05" rpy="${pi/2} 0 -${pi/2}" />
+            <geometry>
+                <mesh filename="package://protobot_description/meshes/rod1End_gz0.01.STL"
+                    scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+        <inertial>
+            <mass value="${mass_rod1End}" />
+            <inertia ixx="0.000016" ixy="0" ixz="0"
+                iyy="0.000016" iyz="0"
+                izz="0.000005" />
+        </inertial>
+    </link>
+
+    <link name="servo3_link">
+        <visual>
+            <origin xyz="-0.007 0.01 -0.018" rpy="${pi/2} 0 0" />
+            <geometry>
+                <mesh filename="package://protobot_description/meshes/servoMotor_gz0.01.STL"
+                    scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="red" />
+        </visual>
+        <collision>
+            <origin xyz="-0.007 0.01 -0.018" rpy="${pi/2} 0 0" />
+            <geometry>
+                <mesh filename="package://protobot_description/meshes/servoMotor_gz0.01.STL"
+                    scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+        <inertial>
+            <mass value="${mass_servoMotor}" />
+            <inertia ixx="0.000009" ixy="0" ixz="0"
+                iyy="0.000009" iyz="0"
+                izz="0.000014" />
+        </inertial>
+    </link>
+
+    <link name="rod4_link">
+        <visual>
+            <origin xyz="0.075 0.0125 -0.05" rpy="${pi/2} 0 -${pi/2}" />
+            <geometry>
+                <mesh filename="package://protobot_description/meshes/rod1End_gz0.01.STL"
+                    scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="green" />
+        </visual>
+        <collision>
+            <origin xyz="0.075 0.0125 -0.05" rpy="${pi/2} 0 -${pi/2}" />
+            <geometry>
+                <mesh filename="package://protobot_description/meshes/rod1End_gz0.01.STL"
+                    scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+        <inertial>
+            <mass value="${mass_rod1End}" />
+            <inertia ixx="0.000016" ixy="0" ixz="0"
+                iyy="0.000016" iyz="0"
+                izz="0.000005" />
+        </inertial>
+    </link>
+
+    <link name="camera_link">
+        <visual>
+            <origin xyz="-0.015 0.04 -0.005" rpy="0 0 -${pi/2}" />
+            <geometry>
+                <mesh filename="package://protobot_description/meshes/webcam_gz0.01.STL"
+                    scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="orange" />
+        </visual>
+        <collision>
+            <origin xyz="-0.015 0.04 -0.005" rpy="0 0 -${pi/2}" />
+            <geometry>
+                <mesh filename="package://protobot_description/meshes/webcam_gz0.01.STL"
+                    scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+        <inertial>
+            <mass value="${mass_rod1End}" />
+            <inertia ixx="0.000002" ixy="0" ixz="0"
+                iyy="0.000011" iyz="0"
+                izz="0.000010" />
+        </inertial>
+    </link>
+
+
+    <joint name="world_base_joint" type="fixed">
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <parent link="world" />
+        <child link="base_link" />
+    </joint>
+
+    <joint name="base_mountPost_joint" type="fixed">
+        <origin xyz="-0.2 0 0.025" rpy="0 0 0" />
+        <parent link="base_link" />
+        <child link="mountPost_link" />
+    </joint>
+
+    <joint name="mountPost_rod1_joint" type="fixed">
+        <origin xyz="0.0454 0 0.9" rpy="0 0 0" />
+        <parent link="mountPost_link" />
+        <child link="rod1_link" />
+    </joint>
+
+    <joint name="joint1" type="revolute">
+        <origin xyz="0.075 0 0.025" rpy="0 0 0" />
+        <parent link="rod1_link" />
+        <child link="servo1_link" />
+        <axis xyz="0 0 1" />
+        <limit lower="-${pi/2}" upper="${pi/2}" effort="10" velocity="1" />
+    </joint>
+
+    <joint name="servo1_rod2_joint" type="fixed">
+        <origin xyz="0.03 0 -0.025" rpy="0 0 0" />
+        <parent link="servo1_link" />
+        <child link="rod2_link" />
+    </joint>
+
+    <joint name="rod2_servo2_joint" type="fixed">
+        <origin xyz="0.05 0 0" rpy="0 0 0" />
+        <parent link="rod2_link" />
+        <child link="servo2_link" />
+    </joint>
+
+    <joint name="joint2" type="revolute">
+        <origin xyz="0.03 0 0.025" rpy="0 0 0" />
+        <parent link="servo2_link" />
+        <child link="rod3_link" />
+        <axis xyz="0 0 1" />
+        <limit lower="-${pi/2}" upper="${pi/2}" effort="10" velocity="1" />
+    </joint>
+
+    <joint name="rod3_servo3_joint" type="fixed">
+        <origin xyz="0.075 0 -0.025" rpy="0 0 0" />
+        <parent link="rod3_link" />
+        <child link="servo3_link" />
+    </joint>
+
+    <joint name="joint3" type="revolute">
+        <origin xyz="0.03 0 0.025" rpy="0 0 0" />
+        <parent link="servo3_link" />
+        <child link="rod4_link" />
+        <axis xyz="0 0 1" />
+        <limit lower="-${pi/2}" upper="${pi/2}" effort="10" velocity="1" />
+    </joint>
+
+    <joint name="rod4_camera_joint" type="fixed">
+        <origin xyz="0.025 0 0.005" rpy="0 0 0" />
+        <parent link="rod4_link" />
+        <child link="camera_link" />
+    </joint>
+
+</robot>

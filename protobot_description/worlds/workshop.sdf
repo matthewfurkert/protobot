@@ -1,0 +1,319 @@
+<sdf version='1.10'>
+  <world name='empty'>
+    <physics name='1ms' type='ignored'>
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+    <plugin name='gz::sim::systems::Physics' filename='gz-sim-physics-system'/>
+    <plugin name='gz::sim::systems::UserCommands' filename='gz-sim-user-commands-system'/>
+    <plugin name='gz::sim::systems::SceneBroadcaster' filename='gz-sim-scene-broadcaster-system'/>
+    <plugin name='gz::sim::systems::Contact' filename='gz-sim-contact-system'/>
+    <gravity>0 0 -9.8000000000000007</gravity>
+    <magnetic_field>5.5644999999999998e-06 2.2875799999999999e-05 -4.2388400000000002e-05</magnetic_field>
+    <atmosphere type='adiabatic'/>
+    <scene>
+      <ambient>0.400000006 0.400000006 0.400000006 1</ambient>
+      <background>0.699999988 0.699999988 0.699999988 1</background>
+      <shadows>true</shadows>
+    </scene>
+    <model name='ground_plane'>
+      <static>true</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.800000012 0.800000012 0.800000012 1</ambient>
+            <diffuse>0.800000012 0.800000012 0.800000012 1</diffuse>
+            <specular>0.800000012 0.800000012 0.800000012 1</specular>
+          </material>
+        </visual>
+        <pose>0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <pose>0 0 0 0 0 0</pose>
+      <self_collide>false</self_collide>
+    </model>
+    <include>
+      <uri>file:///home/furky/workspace/protobot_ws/src/protobot_description/models/cybertruck</uri>
+      <name>brick_box_3x1x3</name>
+      <pose>-1.9821529388427734 -0.074705600738525391 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>file:///home/furky/workspace/protobot_ws/src/protobot_description/models/cybertruck</uri>
+      <name>brick_box_3x1x3_0</name>
+      <pose>-5.1240925788879395 -0.024085899814963341 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>file:///home/furky/workspace/protobot_ws/src/protobot_description/models/brick_box_3x1x3</uri>
+      <name>brick_box_3x1x3_1</name>
+      <pose>4.0356783537264285 -6.8921305282784857 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>file:///home/furky/workspace/protobot_ws/src/protobot_description/models/brick_box_3x1x3</uri>
+      <name>brick_box_3x1x3_2</name>
+      <pose>1.1063499450683594 -6.8874177932739258 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>file:///home/furky/workspace/protobot_ws/src/protobot_description/models/brick_box_3x1x3</uri>
+      <name>brick_box_3x1x3_3</name>
+      <pose>-1.7971203327178955 -6.880159854888916 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>file:///home/furky/workspace/protobot_ws/src/protobot_description/models/brick_box_3x1x3</uri>
+      <name>brick_box_3x1x3_4</name>
+      <pose>-4.6504201889038086 -6.8898005485534668 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>file:///home/furky/workspace/protobot_ws/src/protobot_description/models/brick_box_3x1x3</uri>
+      <name>brick_box_3x1x3_5</name>
+      <pose>-7.593289852142334 -6.8923254013061523 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>file:///home/furky/workspace/protobot_ws/src/protobot_description/models/brick_box_3x1x3</uri>
+      <name>brick_box_3x1x3_6</name>
+      <pose>-8.8604354858398455 -5.6374773979187012 0 0 0 1.5707999672671717</pose>
+    </include>
+    <include>
+      <uri>file:///home/furky/workspace/protobot_ws/src/protobot_description/models/brick_box_3x1x3</uri>
+      <name>brick_box_3x1x3_7</name>
+      <pose>-8.8536748886108398 -2.683150053024292 0 0 0 1.5707999672671717</pose>
+    </include>
+    <include>
+      <uri>file:///home/furky/workspace/protobot_ws/src/protobot_description/models/brick_box_3x1x3</uri>
+      <name>brick_box_3x1x3_8</name>
+      <pose>-8.8566675186157227 0.20152802765369418 0 0 0 1.5707999672671717</pose>
+    </include>
+    <include>
+      <uri>file:///home/furky/workspace/protobot_ws/src/protobot_description/models/brick_box_3x1x3</uri>
+      <name>brick_box_3x1x3_9</name>
+      <pose>-8.8596887588500977 3.1683595180511479 0 0 0 1.5707999672671717</pose>
+    </include>
+    <include>
+      <uri>file:///home/furky/workspace/protobot_ws/src/protobot_description/models/brick_box_3x1x3</uri>
+      <name>brick_box_3x1x3_10</name>
+      <pose>6.9897699356079102 -6.8946800231933594 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>file:///home/furky/workspace/protobot_ws/src/protobot_description/models/brick_box_3x1x3</uri>
+      <name>brick_box_3x1x3_11</name>
+      <pose>8.2464504241943342 -5.6318469047546387 0 0 0 1.5707999672671717</pose>
+    </include>
+    <include>
+      <uri>file:///home/furky/workspace/protobot_ws/src/protobot_description/models/brick_box_3x1x3</uri>
+      <name>brick_box_3x1x3_12</name>
+      <pose>8.2381677627563441 -2.6805408000946045 0 0 0 1.5707999672671717</pose>
+    </include>
+    <include>
+      <uri>file:///home/furky/workspace/protobot_ws/src/protobot_description/models/brick_box_3x1x3</uri>
+      <name>brick_box_3x1x3_13</name>
+      <pose>8.2209205626064303 0.29395586238441024 -0.0019648177545779077 0.0025202700543449901 -7.3196970858634136e-10 1.5708001085765879</pose>
+    </include>
+    <include>
+      <uri>file:///home/furky/workspace/protobot_ws/src/protobot_description/models/brick_box_3x1x3</uri>
+      <name>brick_box_3x1x3_14</name>
+      <pose>8.2324552536010742 3.2039399147033696 0 0 0 1.5707999672671717</pose>
+    </include>
+    <include>
+      <uri>file:///home/furky/workspace/protobot_ws/src/protobot_description/models/Table</uri>
+      <name>Table</name>
+      <pose>-7.9981303215026847 -4.6556868553161621 0 0 0 -1.5707999672671717</pose>
+    </include>
+    <include>
+      <uri>file:///home/furky/workspace/protobot_ws/src/protobot_description/models/Table</uri>
+      <name>Table_0</name>
+      <pose>-7.9930739402771005 -3.1599597930908203 0 0 0 -1.5707999672671717</pose>
+    </include>
+    <include>
+      <uri>file:///home/furky/workspace/protobot_ws/src/protobot_description/models/Table</uri>
+      <name>Table_1</name>
+      <pose>-7.9943971633911133 -1.6652098894119263 0 0 0 -1.5707999672671717</pose>
+    </include>
+    <include>
+      <uri>file:///home/furky/workspace/protobot_ws/src/protobot_description/models/Table</uri>
+      <name>Table_2</name>
+      <pose>-7.9999299049377433 -0.17286792397499084 0 0 0 -1.5707999672671717</pose>
+    </include>
+    <include>
+      <uri>file:///home/furky/workspace/protobot_ws/src/protobot_description/models/Sofa</uri>
+      <name>Sofa</name>
+      <pose>4.682234764099122 -5.1458301544189444 0 0 0 2.3561899866283023</pose>
+    </include>
+    <include>
+      <uri>file:///home/furky/workspace/protobot_ws/src/protobot_description/models/LitterBin</uri>
+      <name>LitterBin</name>
+      <pose>7.1893200874328613 -2.295985221862793 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>file:///home/furky/workspace/protobot_ws/src/protobot_description/models/dumpster</uri>
+      <name>Dumpster</name>
+      <pose>6.5694198608398429 6.4398798942565927 0 0 0 3.1415926535897931</pose>
+    </include>
+    <include>
+      <uri>file:///home/furky/workspace/protobot_ws/src/protobot_description/models/mailbox</uri>
+      <name>Mailbox</name>
+      <pose>-8.3200502395629883 5.4258394241333008 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>file:///home/furky/workspace/protobot_ws/src/protobot_description/models/Sofa</uri>
+      <name>Sofa_0</name>
+      <pose>6.2195491790771484 -3.6771829128265381 0 0 0 2.3561899866283023</pose>
+    </include>
+    <include>
+      <uri>file:///home/furky/workspace/protobot_ws/src/protobot_description/models/aws_robomaker_warehouse_ClutteringC_01</uri>
+      <name>aws_robomaker_warehouse_ClutteringC_01</name>
+      <pose>-5.3333902359008789 -5.454251766204834 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>file:///home/furky/workspace/protobot_ws/src/protobot_description/models/aws_robomaker_warehouse_ClutteringC_01</uri>
+      <name>aws_robomaker_warehouse_ClutteringC_01_0</name>
+      <pose>-2.0485005378723145 -5.5203299522399902 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>file:///home/furky/workspace/protobot_ws/src/protobot_description/models/aws_robomaker_warehouse_ClutteringC_01</uri>
+      <name>aws_robomaker_warehouse_ClutteringC_01_1</name>
+      <pose>1.6930500268936157 -5.4326615333557129 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>file:///home/furky/workspace/protobot_ws/src/protobot_description/models/person_standing</uri>
+      <name>person_standing</name>
+      <pose>2.3417890071868896 -3.2268228530883789 0 0 0 1.5707999672671704</pose>
+    </include>
+    <include>
+      <uri>file:///home/furky/workspace/protobot_ws/src/protobot_description/models/person_standing</uri>
+      <name>person_standing_0</name>
+      <pose>3.3657596111297607 -3.415270090103149 0 0 0 3.1415900000000754</pose>
+    </include>
+    <include>
+      <uri>file:///home/furky/workspace/protobot_ws/src/protobot_description/models/chair</uri>
+      <name>brick_box_3x1x3_15</name>
+      <pose>7.0875287055969238 1.3995209932327273 0 0 0 -1.5707999672671711</pose>
+    </include>
+    <include>
+      <uri>file:///home/furky/workspace/protobot_ws/src/protobot_description/models/chair</uri>
+      <name>brick_box_3x1x3_16</name>
+      <pose>7.0572786331176767 2.414059162139893 0 0 0 -1.5707999672671711</pose>
+    </include>
+    <include>
+      <uri>file:///home/furky/workspace/protobot_ws/src/protobot_description/models/Mine Cart</uri>
+      <name>minecart</name>
+      <pose>6.5571799278259277 3.4498364925384521 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>file:///home/furky/workspace/protobot_ws/src/protobot_description/models/brick_box_3x1x3</uri>
+      <name>brick_box_3x1x3_17</name>
+      <pose>6.9641327857971191 4.4550600051879883 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>file:///home/furky/workspace/protobot_ws/src/protobot_description/models/brick_box_3x1x3</uri>
+      <name>brick_box_3x1x3_18</name>
+      <pose>1 4.4547700881958008 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>file:///home/furky/workspace/protobot_ws/src/protobot_description/models/brick_box_3x1x3</uri>
+      <name>brick_box_3x1x3_19</name>
+      <pose>3.985759973526001 4.4591989517211914 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>file:///home/furky/workspace/protobot_ws/src/protobot_description/models/brick_box_3x1x3</uri>
+      <name>brick_box_3x1x3_20</name>
+      <pose>-7.5963997840881348 4.4233074188232422 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>file:///home/furky/workspace/protobot_ws/src/protobot_description/models/Table</uri>
+      <name>Table_3</name>
+      <pose>-8.0018587112426758 1.2976700067520139 0 0 0 -1.5707999672671717</pose>
+    </include>
+    <include>
+      <uri>file:///home/furky/workspace/protobot_ws/src/protobot_description/models/Table</uri>
+      <name>Table_4</name>
+      <pose>-8.0003089904785156 2.7941899299621582 0 0 0 -1.5707999672671717</pose>
+    </include>
+    <include>
+      <uri>file:///home/furky/workspace/protobot_ws/src/protobot_description/models/Table</uri>
+      <name>Table_5</name>
+      <pose>3.8466799259185791 -1.2957799434661865 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>file:///home/furky/workspace/protobot_ws/src/protobot_description/models/Table</uri>
+      <name>Table_6</name>
+      <pose>3.8385200500488281 -0.52973461151123047 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>file:///home/furky/workspace/protobot_ws/src/protobot_description/models/Table</uri>
+      <name>Table_7</name>
+      <pose>3.8358399868011475 0.27056875824928284 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>file:///home/furky/workspace/protobot_ws/src/protobot_description/models/Table</uri>
+      <name>Table_8</name>
+      <pose>3.8322100639343262 1.0700931549072266 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>file:///home/furky/workspace/protobot_ws/src/protobot_description/models/chair</uri>
+      <name>brick_box_3x1x3_21</name>
+      <pose>7.0805902481079102 0.42725569009780884 0 0 0 -1.5707999672671711</pose>
+    </include>
+    <include>
+      <uri>file:///home/furky/workspace/protobot_ws/src/protobot_description/models/chair</uri>
+      <name>brick_box_3x1x3_22</name>
+      <pose>7.1218638420104989 -0.73963552713394165 0 0 0 -1.5707999672671711</pose>
+    </include>
+    <include>
+      <uri>file:///home/furky/workspace/protobot_ws/src/protobot_description/models/dumpster</uri>
+      <name>Dumpster_0</name>
+      <pose>2.6960399150848389 6.6188898086547852 0 0 0 3.1415926535897931</pose>
+    </include>
+    <light name='sun' type='directional'>
+      <pose>0 0 10 0 0 0</pose>
+      <cast_shadows>true</cast_shadows>
+      <intensity>1</intensity>
+      <direction>-0.5 0.10000000000000001 -0.90000000000000002</direction>
+      <diffuse>0.800000012 0.800000012 0.800000012 1</diffuse>
+      <specular>0.200000003 0.200000003 0.200000003 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <linear>0.01</linear>
+        <constant>0.90000000000000002</constant>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <spot>
+        <inner_angle>0</inner_angle>
+        <outer_angle>0</outer_angle>
+        <falloff>0</falloff>
+      </spot>
+    </light>
+  </world>
+</sdf>

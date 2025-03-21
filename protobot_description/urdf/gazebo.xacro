@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <gazebo>
+        <plugin
+            filename="gz-sim-joint-state-publisher-system"
+            name="gz::sim::systems::JointStatePublisher">
+            <topic>joint_states</topic>
+            <joint_name>joint1</joint_name>
+            <joint_name>joint2</joint_name>
+            <joint_name>joint3</joint_name>
+        </plugin>
+    </gazebo>
+
+    <gazebo>
+        <plugin
+            filename="gz-sim-joint-position-controller-system"
+            name="gz::sim::systems::JointPositionController">
+            <joint_name>joint1</joint_name>
+            <p_gain>1</p_gain>
+            <i_gain>0.1</i_gain>
+            <d_gain>0.01</d_gain>
+        </plugin>
+        <plugin
+            filename="gz-sim-joint-position-controller-system"
+            name="gz::sim::systems::JointPositionController">
+            <joint_name>joint2</joint_name>
+            <p_gain>1</p_gain>
+            <i_gain>0.1</i_gain>
+            <d_gain>0.01</d_gain>
+        </plugin>
+        <plugin
+            filename="gz-sim-joint-position-controller-system"
+            name="gz::sim::systems::JointPositionController">
+            <joint_name>joint3</joint_name>
+            <p_gain>1</p_gain>
+            <i_gain>0.1</i_gain>
+            <d_gain>0.01</d_gain>
+        </plugin>
+    </gazebo>
+
+    <gazebo reference="camera_link">
+        <sensor name="camera_sensor" type="camera">
+            <camera name="camera">
+                <camera_info_topic>rgb_camera/camera_info</camera_info_topic>
+                <horizontal_fov>1.15</horizontal_fov>
+                <image>
+                    <width>2304</width>
+                    <height>1296</height>
+                </image>
+                <clip>
+                    <near>0.1</near>
+                    <far>100</far>
+                </clip>
+            </camera>
+            <always_on>1</always_on>
+            <update_rate>30</update_rate>
+            <visualize>true</visualize>
+            <topic>rgb_camera/image_raw</topic>
+        </sensor>
+    </gazebo>
+    
+    <!-- <gazebo>
+        <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+            <parameters>$(find protobot_controller)/config/protobot_controllers.yaml</parameters>
+        </plugin>
+    </gazebo> -->
+
+</robot>

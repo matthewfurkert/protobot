@@ -1,0 +1,44 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <model name="brick_box_3x1x3">
+    <static>false</static>
+    <link name="chassis">
+      <pose>0 0 0 0 0 0</pose>
+      <inertial>
+        <inertia>
+          <ixx>1.67</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1.67</iyy>
+          <iyz>0</iyz>
+          <izz>0.417</izz>
+          </inertia>
+        <mass>10.0</mass>
+      </inertial>
+      <collision name="collision">
+        <geometry>
+          <mesh>
+            <uri>model://chair/meshes/chair07.dae</uri>
+            <scale>1.0 1.0 1.0</scale>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>model://chair/meshes/chair07.dae</uri>
+            <scale>1.0 1.0 1.0</scale>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1.0 1.0 1.0</diffuse>
+          <pbr>
+            <metal>
+              <albedo_map>model://chair/materials/textures/chair_base_02.png</albedo_map>
+            </metal>
+          </pbr>
+        </material>
+      </visual>
+    </link>
+  </model>
+</sdf>

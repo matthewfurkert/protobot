@@ -1,0 +1,297 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <model name='cybertruck' canonical_link='body'>
+    <pose>0 0 0 0 0 0</pose>
+    <static>false</static>
+    <link name="body">
+      <pose relative_to='__model__'>0 0 0.25 0 0 0</pose>
+      <inertial>
+        <mass>3000.0</mass>
+        <inertia>
+          <ixx>3125</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>10562.5</iyy>
+          <iyz>0</iyz>
+          <izz>10562.5</izz>
+        </inertia>
+      </inertial>
+      <collision name="collision">
+        <geometry>
+          <mesh>
+            <uri>model://cybertruck/meshes/body.dae</uri>
+            <scale>1.0 1.0 1.0</scale>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>model://cybertruck/meshes/body.dae</uri>
+            <scale>1.0 1.0 1.0</scale>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1.0 1.0 1.0</diffuse>
+          <pbr>
+            <metal>
+              <albedo_map>model://cybertruck/materials/textures/truck_color.png</albedo_map>
+              <roughness_map>model://cybertruck/materials/textures/truck_roughness.png</roughness_map>
+              <metalness_map>model://cybertruck/materials/textures/truck_metallic.png</metalness_map>
+            </metal>
+          </pbr>
+        </material>
+      </visual>
+    </link>
+
+    <link name='rear_right_wheel'>
+      <pose relative_to="body">-0.9 1.8 0.5 0 -1.57 0</pose>
+      <inertial>
+        <mass>32</mass>
+        <inertia>
+          <ixx>0.656</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.656</iyy>
+          <iyz>0</iyz>
+          <izz>1.033</izz>
+        </inertia>
+      </inertial>
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>model://cybertruck/meshes/wheel.dae</uri>
+            <scale>1.0 1.0 1.0</scale>
+          </mesh>
+          <!-- <cylinder>
+            <radius>0.48</radius>
+            <length>0.3</length>
+          </cylinder> -->
+        </geometry>
+        <material>
+          <diffuse>1.0 1.0 1.0</diffuse>
+          <pbr>
+            <metal>
+              <albedo_map>model://cybertruck/materials/textures/wheel_color.png</albedo_map>
+            </metal>
+          </pbr>
+        </material>
+      </visual>
+      <collision name='collision'>
+        <geometry>
+          <cylinder>
+            <radius>0.48</radius>
+            <length>0.3</length>
+          </cylinder>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name='rear_left_wheel'>
+      <pose relative_to="body">0.9 1.8 0.5 0 -1.57 3.14</pose>
+      <inertial>
+        <mass>32</mass>
+        <inertia>
+          <ixx>0.656</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.656</iyy>
+          <iyz>0</iyz>
+          <izz>1.033</izz>
+        </inertia>
+      </inertial>
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>model://cybertruck/meshes/wheel.dae</uri>
+            <scale>1.0 1.0 1.0</scale>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1.0 1.0 1.0</diffuse>
+          <pbr>
+            <metal>
+              <albedo_map>model://cybertruck/materials/textures/wheel_color.png</albedo_map>
+            </metal>
+          </pbr>
+        </material>
+      </visual>
+      <collision name='collision'>
+        <geometry>
+          <cylinder>
+            <radius>0.48</radius>
+            <length>0.3</length>
+          </cylinder>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name='front_right_wheel'>
+      <pose relative_to="body">-0.9 -2.0 0.5 0 -1.57 0</pose>
+      <inertial>
+        <mass>32</mass>
+        <inertia>
+          <ixx>0.656</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.656</iyy>
+          <iyz>0</iyz>
+          <izz>1.033</izz>
+        </inertia>
+      </inertial>
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>model://cybertruck/meshes/wheel.dae</uri>
+            <scale>1.0 1.0 1.0</scale>
+          </mesh>
+          <!-- <cylinder>
+            <radius>0.48</radius>
+            <length>0.3</length>
+          </cylinder> -->
+        </geometry>
+        <material>
+          <diffuse>1.0 1.0 1.0</diffuse>
+          <pbr>
+            <metal>
+              <albedo_map>model://cybertruck/materials/textures/wheel_color.png</albedo_map>
+            </metal>
+          </pbr>
+        </material>
+      </visual>
+      <collision name='collision'>
+        <geometry>
+          <cylinder>
+            <radius>0.48</radius>
+            <length>0.3</length>
+          </cylinder>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name='front_left_wheel'>
+      <pose relative_to="body">0.9 -2.0 0.5 0 -1.57 3.14</pose>
+      <inertial>
+        <mass>32</mass>
+        <inertia>
+          <ixx>0.656</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.656</iyy>
+          <iyz>0</iyz>
+          <izz>1.033</izz>
+        </inertia>
+      </inertial>
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>model://cybertruck/meshes/wheel.dae</uri>
+            <scale>1.0 1.0 1.0</scale>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1.0 1.0 1.0</diffuse>
+          <pbr>
+            <metal>
+              <albedo_map>model://cybertruck/materials/textures/wheel_color.png</albedo_map>
+            </metal>
+          </pbr>
+        </material>
+      </visual>
+      <collision name='collision'>
+        <geometry>
+          <cylinder>
+            <radius>0.48</radius>
+            <length>0.3</length>
+          </cylinder>
+        </geometry>
+      </collision>
+    </link>
+
+
+    <joint name='rear_right_wheel_joint' type='revolute'>
+      <pose relative_to='rear_right_wheel'/>
+      <parent>body</parent>
+      <child>rear_right_wheel</child>
+      <axis>
+        <xyz expressed_in='__model__'>0 0 1</xyz>
+        <limit>
+          <lower>-1.79769e+308</lower>    <!--negative infinity-->
+          <upper>1.79769e+308</upper>     <!--positive infinity-->
+        </limit>
+      </axis>
+    </joint>
+
+    <joint name='rear_left_wheel_joint' type='revolute'>
+      <pose relative_to='rear_right_wheel'/>
+      <parent>body</parent>
+      <child>rear_left_wheel</child>
+      <axis>
+        <xyz expressed_in='__model__'>0 0 1</xyz>
+        <limit>
+          <lower>-1.79769e+308</lower>    <!--negative infinity-->
+          <upper>1.79769e+308</upper>     <!--positive infinity-->
+        </limit>
+      </axis>
+    </joint>
+
+    <joint name='front_right_wheel_joint' type='revolute'>
+      <pose relative_to='front_right_wheel'/>
+      <parent>body</parent>
+      <child>front_right_wheel</child>
+      <axis>
+        <xyz expressed_in='__model__'>0 0 1</xyz>
+        <limit>
+          <lower>-1.79769e+308</lower>    <!--negative infinity-->
+          <upper>1.79769e+308</upper>     <!--positive infinity-->
+        </limit>
+      </axis>
+    </joint>
+
+    <joint name='front_left_wheel_joint' type='revolute'>
+      <pose relative_to='front_right_wheel'/>
+      <parent>body</parent>
+      <child>front_left_wheel</child>
+      <axis>
+        <xyz expressed_in='__model__'>0 0 1</xyz>
+        <limit>
+          <lower>-1.79769e+308</lower>    <!--negative infinity-->
+          <upper>1.79769e+308</upper>     <!--positive infinity-->
+        </limit>
+      </axis>
+    </joint>
+  </model>
+
+  <!-- <plugin
+    filename="gz-sim-joint-position-controller-system"
+    name="gz::sim::systems::JointPositionController">
+    <joint_name>rear_right_wheel_joint</joint_name>
+    <p_gain>1</p_gain>
+    <i_gain>0.1</i_gain>
+    <d_gain>0.01</d_gain>
+  </plugin>
+  <plugin
+    filename="gz-sim-joint-position-controller-system"
+    name="gz::sim::systems::JointPositionController">
+    <joint_name>rear_left_wheel_joint</joint_name>
+    <p_gain>1</p_gain>
+    <i_gain>0.1</i_gain>
+    <d_gain>0.01</d_gain>
+  </plugin>
+  <plugin
+    filename="gz-sim-joint-position-controller-system"
+    name="gz::sim::systems::JointPositionController">
+    <joint_name>front_right_wheel_joint</joint_name>
+    <p_gain>1</p_gain>
+    <i_gain>0.1</i_gain>
+    <d_gain>0.01</d_gain>
+  </plugin>
+  <plugin
+    filename="gz-sim-joint-position-controller-system"
+    name="gz::sim::systems::JointPositionController">
+    <joint_name>front_left_wheel_joint</joint_name>
+    <p_gain>1</p_gain>
+    <i_gain>0.1</i_gain>
+    <d_gain>0.01</d_gain>
+  </plugin> -->
+</sdf>
