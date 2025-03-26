@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<robot name="protobot">
+
+    <group name="arm">
+        <joint name="world_base_joint"/>
+        <joint name="base_mountPost_joint"/>
+        <joint name="mountPost_rod1_joint"/>
+
+        <joint name="shoulder_joint"/>
+
+        <joint name="servo1_rod2_joint"/>
+        <joint name="rod2_servo2_joint"/>
+        
+        <joint name="elbow_joint"/>
+        
+        <joint name="rod3_servo3_joint"/>
+        
+        <joint name="wrist_joint"/>
+
+        <joint name="rod4_camera_joint"/>
+
+    </group>
+
+    <group_state name="home" group="arm">
+        <joint name="shoulder_joint" value="0"/>
+        <joint name="elbow_joint" value="0"/>
+        <joint name="wrist_joint" value="0"/>
+    </group_state>
+
+
+    <disable_collisions link1="base_link" link2="mountPost_link" reason="Adjacent"/>
+    <disable_collisions link1="mountPost_link" link2="rod1_link" reason="Adjacent"/>
+    <disable_collisions link1="rod1_link" link2="servo1_link" reason="Adjacent"/>
+    <disable_collisions link1="servo1_link" link2="rod2_link" reason="Adjacent"/>
+    <disable_collisions link1="rod2_link" link2="servo2_link" reason="Adjacent"/>
+    <disable_collisions link1="servo2_link" link2="rod3_link" reason="Adjacent"/>
+    <disable_collisions link1="rod3_link" link2="servo3_link" reason="Adjacent"/>
+    <disable_collisions link1="servo3_link" link2="rod4_link" reason="Adjacent"/>
+    <disable_collisions link1="rod4_link" link2="camera_link" reason="Adjacent"/>
+
+</robot>

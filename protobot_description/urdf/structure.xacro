@@ -269,7 +269,7 @@
         <child link="rod1_link" />
     </joint>
 
-    <joint name="joint1" type="revolute">
+    <joint name="shoulder_joint" type="revolute">
         <origin xyz="0.075 0 0.025" rpy="0 0 0" />
         <parent link="rod1_link" />
         <child link="servo1_link" />
@@ -289,7 +289,7 @@
         <child link="servo2_link" />
     </joint>
 
-    <joint name="joint2" type="revolute">
+    <joint name="elbow_joint" type="revolute">
         <origin xyz="0.03 0 0.025" rpy="0 0 0" />
         <parent link="servo2_link" />
         <child link="rod3_link" />
@@ -303,7 +303,7 @@
         <child link="servo3_link" />
     </joint>
 
-    <joint name="joint3" type="revolute">
+    <joint name="wrist_joint" type="revolute">
         <origin xyz="0.03 0 0.025" rpy="0 0 0" />
         <parent link="servo3_link" />
         <child link="rod4_link" />
