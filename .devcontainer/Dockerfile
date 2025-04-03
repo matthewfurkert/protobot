@@ -1,4 +1,4 @@
-FROM osrf/ros:jazzy-desktop-full
+FROM ubuntu:noble
 
 # Add ubuntu user with same UID and GID as your host system, if it doesn't already exist
 ARG USERNAME=ubuntu
@@ -26,22 +26,38 @@ RUN sudo apt-get update && sudo apt upgrade -y
 # Install Git
 RUN sudo apt-get install -y git
 
-# Rosdep update
-RUN rosdep update
+RUN sudo apt-get install -y software-properties-common
+RUN sudo add-apt-repository universe
+
+RUN sudo apt-get update && sudo apt-get install -y curl
+RUN sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
+
+RUN echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(. /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
+
+RUN sudo apt-get update && \
+    sudo apt-get install -y ros-dev-tools
+
+RUN sudo apt-get update && \
+    sudo apt-get upgrade -y
+
+RUN sudo apt-get install -y ros-jazzy-desktop
 
 # Source the ROS setup file
-RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> ~/.bashrc
+RUN echo "source /opt/ros/jazzy/setup.bash" >> ~/.bashrc
 
-RUN sudo apt-get install -y tree
-RUN sudo apt-get install -y ros-${ROS_DISTRO}-joint-state-publisher-gui
-RUN sudo apt-get install -y ros-${ROS_DISTRO}-ros-gz*
-RUN sudo apt-get install -y ros-${ROS_DISTRO}-ros2-control
-RUN sudo apt-get install -y ros-${ROS_DISTRO}-ros2-controllers
-RUN sudo apt-get install -y ros-${ROS_DISTRO}-gz-ros2-control*
-RUN sudo apt-get install -y ros-${ROS_DISTRO}-moveit*
+# Rosdep update
+RUN sudo rosdep init
+RUN rosdep update
+
+RUN sudo apt-get install -y ros-jazzy-joint-state-publisher-gui
+RUN sudo apt-get install -y ros-jazzy-ros-gz*
+RUN sudo apt-get install -y ros-jazzy-ros2-control
+RUN sudo apt-get install -y ros-jazzy-ros2-controllers
+RUN sudo apt-get install -y ros-jazzy-gz-ros2-control*
+RUN sudo apt-get install -y ros-jazzy-moveit*
 RUN sudo apt-get install -y libserial-dev
 RUN sudo apt-get install -y python3-pip
 
+RUN sudo apt-get install -y tree
 
-
-RUN mkdir -p ~/workspace
+COPY entrypoint.sh /entrypoint.sh

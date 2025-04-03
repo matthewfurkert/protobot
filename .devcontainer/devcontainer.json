@@ -3,11 +3,14 @@
   "dockerFile": "Dockerfile",
   "runArgs": [
     "--privileged",
-    "--network=host"
+    "--network=host",
+    "--name=${localEnv:USER}_devcontainer",
+    "--env", "DISPLAY=${localEnv:DISPLAY}",
   ],
   "workspaceMount": "source=${localWorkspaceFolder},target=/home/ubuntu/workspace/${localWorkspaceFolderBasename},type=bind",
   "workspaceFolder": "/home/ubuntu/workspace/${localWorkspaceFolderBasename}",
   "mounts": [
     "source=${localEnv:HOME}${localEnv:USERPROFILE}/.bash_history,target=/home/vscode/.bash_history,type=bind"
-  ]
+  ],
+  "postCreateCommand": "/entrypoint.sh"
 }
