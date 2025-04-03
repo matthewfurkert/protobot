@@ -67,42 +67,42 @@
       <self_collide>false</self_collide>
     </model>
     <include>
-      <uri>file:///home/furky/workspace/protobot_ws/src/protobot_description/models/cybertruck</uri>
+      <uri>model://cybertruck</uri>
       <name>cybertruck</name>
       <pose>-3.7567102861062578 0.25624784067090978 -0.26990174872913364 1.7650738448033226e-08 1.1832127750231923e-05 1.5739116527691464</pose>
     </include>
     <include>
-      <uri>file:///home/furky/workspace/protobot_ws/src/protobot_description/models/brick_box_3x1x3</uri>
+      <uri>model://brick_box_3x1x3</uri>
       <name>brick_box_3x1x3</name>
       <pose>-5.0755200386047363 -1.9621700048446655 0 0 0 0</pose>
     </include>
     <include>
-      <uri>file:///home/furky/workspace/protobot_ws/src/protobot_description/models/brick_box_3x1x3</uri>
+      <uri>model://brick_box_3x1x3</uri>
       <name>brick_box_3x1x3_0</name>
       <pose>-2.0966899394989014 -1.9643881320953369 0 0 0 0</pose>
     </include>
     <include>
-      <uri>file:///home/furky/workspace/protobot_ws/src/protobot_description/models/brick_box_3x1x3</uri>
+      <uri>model://brick_box_3x1x3</uri>
       <name>brick_box_3x1x3_1</name>
       <pose>-4.9723300933837891 3.5398445129394531 0 0 0 0</pose>
     </include>
     <include>
-      <uri>file:///home/furky/workspace/protobot_ws/src/protobot_description/models/brick_box_3x1x3</uri>
+      <uri>model://brick_box_3x1x3</uri>
       <name>brick_box_3x1x3_2</name>
       <pose>-2.0045599937438965 3.537391185760498 0 0 0 0</pose>
     </include>
     <include>
-      <uri>file:///home/furky/workspace/protobot_ws/src/protobot_description/models/brick_box_3x1x3</uri>
+      <uri>model://brick_box_3x1x3</uri>
       <name>brick_box_3x1x3_3</name>
       <pose>-0.35061401128768921 -0.68930822610855103 0 0 0 -1.5707998434753316</pose>
     </include>
     <include>
-      <uri>file:///home/furky/workspace/protobot_ws/src/protobot_description/models/brick_box_3x1x3</uri>
+      <uri>model://brick_box_3x1x3</uri>
       <name>brick_box_3x1x3_4</name>
       <pose>-0.33460253477096558 2.2788703441619873 0 0 0 -1.5707998434753316</pose>
     </include>
     <include>
-      <uri>file:///home/furky/workspace/protobot_ws/src/protobot_description/models/Table</uri>
+      <uri>model://Table</uri>
       <name>Table</name>
       <pose>-2.6915106773376465 2.5642061233520508 0 0 0 0</pose>
     </include>
