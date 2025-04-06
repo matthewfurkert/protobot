@@ -250,6 +250,8 @@
         </inertial>
     </link>
 
+    <link name="camera_link_optical">
+    </link>
 
     <joint name="world_base_joint" type="fixed">
         <origin xyz="0 0 0" rpy="0 0 0" />
@@ -315,6 +317,12 @@
         <origin xyz="0.025 0 0.005" rpy="0 0 0" />
         <parent link="rod4_link" />
         <child link="camera_link" />
+    </joint>
+
+    <joint name="camera_optical_joint" type="fixed">
+        <origin xyz="0.005 0.02 0.01" rpy="-1.5707 0 -1.5707"/>
+        <parent link="camera_link"/>
+        <child link="camera_link_optical"/>
     </joint>
 
 </robot>
