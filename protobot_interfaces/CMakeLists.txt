@@ -12,6 +12,7 @@ find_package(rosidl_default_generators REQUIRED)
 
 rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/Coordinates.msg"
+  "srv/Coordinates.srv"
   "action/ProtobotTask.action"
 )
 

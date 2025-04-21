@@ -80,31 +80,31 @@ def generate_launch_description():
         ]
     )
 
-     # Node to bridge camera topics
-    gz_image_bridge_node = Node(
-        package="ros_gz_image",
-        executable="image_bridge",
-        arguments=[
-            "/arm_camera/image",
-        ],
-        output="screen",
-        parameters=[
-            {'use_sim_time': LaunchConfiguration('use_sim_time'),
-             'arm_camera.image.compressed.jpeg_quality': 75},
-        ],
-    )
+    #  # Node to bridge camera topics
+    # gz_image_bridge_node = Node(
+    #     package="ros_gz_image",
+    #     executable="image_bridge",
+    #     arguments=[
+    #         "/arm_camera/image",
+    #     ],
+    #     output="screen",
+    #     parameters=[
+    #         {'use_sim_time': LaunchConfiguration('use_sim_time'),
+    #          'arm_camera.image.compressed.jpeg_quality': 75},
+    #     ],
+    # )
 
-    # Relay node to republish camera_info to image/camera_info
-    relay_camera_info_node = Node(
-        package='topic_tools',
-        executable='relay',
-        name='relay_camera_info',
-        output='screen',
-        arguments=['arm_camera/camera_info', 'arm_camera/image/camera_info'],
-        parameters=[
-            {'use_sim_time': LaunchConfiguration('use_sim_time')},
-        ]
-    )
+    # # Relay node to republish camera_info to image/camera_info
+    # relay_camera_info_node = Node(
+    #     package='topic_tools',
+    #     executable='relay',
+    #     name='relay_camera_info',
+    #     output='screen',
+    #     arguments=['arm_camera/camera_info', 'arm_camera/image/camera_info'],
+    #     parameters=[
+    #         {'use_sim_time': LaunchConfiguration('use_sim_time')},
+    #     ]
+    # )
 
     # # Launches rviz with the specified robot model
     # rviz_node = Node(
@@ -129,8 +129,8 @@ def generate_launch_description():
         gz_launch,
         gz_spawn_entity,
         gz_bridge_node,
-        gz_image_bridge_node,
-        relay_camera_info_node,
+        # gz_image_bridge_node,
+        # relay_camera_info_node,
         # rviz_node
     ])
    

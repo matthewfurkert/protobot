@@ -11,7 +11,7 @@
             
             <xacro:unless value="$(arg is_sim)">
                 <hardware>
-                    <plugin>arduinobot_controller/ArduinobotInterface</plugin>
+                    <plugin>protobot_controller/ProtobotInterface</plugin>
                     <param name="port">/dev/ttyUSB0</param>
                 </hardware>
             </xacro:unless>
