@@ -6,35 +6,6 @@
 namespace protobot_controller
 {
 
-std::string compensateZeros(int value)
-{
-    std::string compensate_zeros = "";
-    if (value < 10) {
-        compensate_zeros = "00";
-    } else if (value < 100) {
-        compensate_zeros = "0";
-    } else {
-        compensate_zeros = "";
-    }
-    return compensate_zeros;
-}
-
-ProtobotInterface::ProtobotInterface()
-{
-}
-
-ProtobotInterface::~ProtobotInterface()
-{
-    if (arduino_.IsOpen()) {
-        try {
-            arduino_.Close();
-        }
-        catch(...){
-            RCLCPP_FATAL_STREAM(rclcpp::get_logger("ProtobotInterface"), "Something went wrong whilst closing the connection with port " << port_);
-        }
-    }
-}
-
 hardware_interface::CallbackReturn ProtobotInterface::on_init(const hardware_interface::HardwareInfo &hardware_info)
 {
 
@@ -84,11 +55,13 @@ hardware_interface::CallbackReturn ProtobotInterface::on_init(const hardware_int
 
     try
     {
-        port_ = info_.hardware_parameters.at("port");
+        ShoulderServo = std::make_unique<ServoMotor>(0, 0);
+        ElbowServo = std::make_unique<ServoMotor>(1, 0);
+        WristServo = std::make_unique<ServoMotor>(2, 0);
     }
     catch(const std::out_of_range &e)
     {
-        RCLCPP_FATAL(rclcpp::get_logger("Protobot Interface"), "No serial port provided, Aborting");
+        RCLCPP_FATAL(rclcpp::get_logger("Protobot Interface"), "Unable to create Servo class instances, Aborting");
         return hardware_interface::CallbackReturn::FAILURE;
     }
 
@@ -121,16 +94,10 @@ hardware_interface::CallbackReturn ProtobotInterface::on_activate(
         set_command(name, get_state(name));
     }
 
-    try
-    {
-        arduino_.Open(port_);
-        arduino_.SetBaudRate(LibSerial::BaudRate::BAUD_115200);
-    }
-    catch(...)
-    {
-        RCLCPP_FATAL_STREAM(rclcpp::get_logger("ProtobotInterface"), "Something went wrong whilst interacting with the port " << port_);
-        return CallbackReturn::FAILURE;
-    }
+    ShoulderServo->activate();
+    ElbowServo->activate();
+    WristServo->activate();
+
     RCLCPP_INFO(rclcpp::get_logger("ProtobotInterface"), "Hardware started, ready to take commands");
     return hardware_interface::CallbackReturn::SUCCESS;
 }
@@ -139,19 +106,11 @@ hardware_interface::CallbackReturn ProtobotInterface::on_deactivate(
     const rclcpp_lifecycle::State & /*previous_state*/)
 {    
     RCLCPP_INFO(rclcpp::get_logger("ProtobotInterface"), "Stopping the robot hardware...");
-    if (arduino_.IsOpen())
-    {
-        try
-        {
-            arduino_.Close();
-        }
-        catch(...)
-        {
-            RCLCPP_FATAL_STREAM(rclcpp::get_logger("ProtobotInterface"), "Something went wrong whilst closing connection with the port " << port_);
-            return CallbackReturn::FAILURE;
-        }
-        
-    }
+    
+    ShoulderServo->deactivate();
+    ElbowServo->deactivate();
+    WristServo->deactivate();
+
     RCLCPP_INFO(rclcpp::get_logger("ProtobotInterface"), "Hardware stopped");
     return hardware_interface::CallbackReturn::SUCCESS;
 }
@@ -173,7 +132,8 @@ hardware_interface::return_type ProtobotInterface::write(
 
     // Check if all current commands match the previous ones
     bool all_match = true;
-    for (const auto& name : position_interfaces_) {
+    // for (const auto& name : position_interfaces_) {
+    for (const auto & [name, descr] : joint_command_interfaces_) {
         double current = get_command(name);
         // If the interface isn't in prev_position_commands_ yet (first run) or values differ
         if (prev_position_commands_.find(name) == prev_position_commands_.end() || current != prev_position_commands_[name]) {
@@ -185,43 +145,22 @@ hardware_interface::return_type ProtobotInterface::write(
         return hardware_interface::return_type::OK;
     }
 
-    // Construct the message string
-    std::string msg;
+    // Set the new command
     // Shoulder joint
     double shoulder_pos = get_command(position_interfaces_.at(0));
-    int shoulder = static_cast<int>(((shoulder_pos + (M_PI/2)) * 180) / M_PI);
-    msg.append("b");
-    msg.append(compensateZeros(shoulder));
-    msg.append(std::to_string(shoulder));
-    msg.append(",");
-    // Elbow joint
+    int shoulder = static_cast<int>(180 - (shoulder_pos + (M_PI/2)) * (180 / M_PI));
     double elbow_pos = get_command(position_interfaces_.at(1));
-    int elbow = 180 - static_cast<int>(((elbow_pos + (M_PI/2)) * 180) / M_PI);
-    msg.append("s");
-    msg.append(compensateZeros(elbow));
-    msg.append(std::to_string(elbow));
-    msg.append(",");
-    // Wrist joint
+    int elbow = static_cast<int>((elbow_pos + (M_PI/2)) * (180 / M_PI));
     double wrist_pos = get_command(position_interfaces_.at(2));
-    int wrist = static_cast<int>(((wrist_pos + (M_PI/2)) * 180) / M_PI);
-    msg.append("e");
-    msg.append(compensateZeros(wrist));
-    msg.append(std::to_string(wrist));
-    msg.append(",");
+    int wrist = static_cast<int>((wrist_pos + (M_PI/2)) * (180 / M_PI));
 
-    // Send the message
-    try {
-        arduino_.Write(msg);
-        // For debugging, to see what values are sent
-        // RCLCPP_INFO(rclcpp::get_logger("ProtobotInterface"), "Sent: %s", msg.c_str());
-    } catch(...) {
-        RCLCPP_ERROR_STREAM(rclcpp::get_logger("ProtobotInterface"), 
-            "Something went wrong whilst sending this message " << msg << " to the port " << port_);
-        return hardware_interface::return_type::ERROR;
-    }
+    ShoulderServo->set_angle(shoulder);
+    ElbowServo->set_angle(elbow);
+    WristServo->set_angle(wrist);
 
     // Update previous commands
-    for (const auto& name : position_interfaces_) {
+    // for (const auto& name : position_interfaces_) {
+    for (const auto & [name, descr] : joint_command_interfaces_) {
         prev_position_commands_[name] = get_command(name);
     }
 

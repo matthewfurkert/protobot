@@ -19,10 +19,6 @@ def generate_launch_description():
         [pkg_protobot_description, "urdf",
          LaunchConfiguration('model')]
     )
-    rviz_config_path = PathJoinSubstitution(
-        [pkg_protobot_description, "rviz",
-         "display.rviz"]
-    )
     controller_file_path = PathJoinSubstitution(
         [pkg_protobot_controller, "config",
          "controllers.yaml"]
@@ -51,14 +47,6 @@ def generate_launch_description():
         ],
     )
 
-    rviz2_node = Node(
-        package='rviz2',
-        executable='rviz2',
-        condition=UnlessCondition(LaunchConfiguration("is_sim")),
-        output='screen',
-        arguments=['-d', rviz_config_path]
-    )
-
     joint_state_broadcaster_spawner = Node(
         package="controller_manager",
         executable="spawner",
@@ -84,7 +72,6 @@ def generate_launch_description():
         is_sim_arg,
         robot_state_publisher_node,
         controller_manager,
-        rviz2_node,
         joint_state_broadcaster_spawner,
         arm_controller_spawner,
     ])

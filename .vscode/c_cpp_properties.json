@@ -10,6 +10,7 @@
         "/home/furky/workspace/protobot_ws/install/protobot_controller/include/**",
         "/opt/ros/jazzy/include/**",
         "/home/furky/workspace/protobot_ws/src/protobot_description/include/**",
+        "/home/furky/workspace/protobot_ws/src/protobot_controller/include/**",
         "/usr/include/**"
       ],
       "name": "ROS",

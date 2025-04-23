@@ -1,11 +1,15 @@
 #ifndef PROTOBOT_INTERFACE_H
 #define PROTOBOT_INTERFACE_H
 
-#include "rclcpp/rclcpp.hpp"
+#include "hardware_interface/handle.hpp"
+#include "hardware_interface/hardware_info.hpp"
 #include "hardware_interface/system_interface.hpp"
+#include "hardware_interface/types/hardware_interface_return_values.hpp"
+#include "rclcpp/rclcpp.hpp"
+#include "rclcpp/macros.hpp"
 #include <rclcpp_lifecycle/node_interfaces/lifecycle_node_interface.hpp>
 #include <rclcpp_lifecycle/state.hpp>
-#include <libserial/SerialPort.h>
+#include "protobot_controller/servo_comms.hpp"
 
 #include <memory>
 #include <string>
@@ -18,8 +22,7 @@ using CallbackReturn = rclcpp_lifecycle::node_interfaces::LifecycleNodeInterface
 class ProtobotInterface : public hardware_interface::SystemInterface 
 {
 public:
-    ProtobotInterface();
-    virtual ~ProtobotInterface();
+    RCLCPP_SHARED_PTR_DEFINITIONS(ProtobotInterface)
 
     hardware_interface::CallbackReturn on_init(const hardware_interface::HardwareInfo &hardware_info) override;
     hardware_interface::CallbackReturn on_configure(const rclcpp_lifecycle::State & previous_state) override;
@@ -31,14 +34,15 @@ public:
     hardware_interface::return_type write(const rclcpp::Time &time, const rclcpp::Duration &period) override;
 
 private:
-    LibSerial::SerialPort arduino_;
-    std::string port_;
     std::vector<std::string> position_interfaces_ = {
         "shoulder_joint/position",
         "elbow_joint/position",
         "wrist_joint/position",
     };
     std::unordered_map<std::string, double> prev_position_commands_;
+    std::unique_ptr<ServoMotor> ShoulderServo;
+    std::unique_ptr<ServoMotor> ElbowServo;
+    std::unique_ptr<ServoMotor> WristServo;
 };
 }
 #endif
